@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ex45
 {
@@ -48,7 +45,6 @@ namespace ex45
 
                 Console.ReadKey();
                 Console.Clear();
-
             }
         }
     }
@@ -57,7 +53,7 @@ namespace ex45
     {
         List<Wagon> _wagons = new List<Wagon>();
 
-        public void CreateWagons(TicketOffice tickets)
+        public void Create(TicketOffice tickets)
         {
             const string CommandAddSmallWagon = "1";
             const string CommandAddMediumWagon = "2";
@@ -122,7 +118,7 @@ namespace ex45
                 wagon.ShowWagons();
             }
 
-            Console.WriteLine($"[)");
+            Console.WriteLine("[)");
         }
 
         private int AddWagon(int wagonCapacity, char wagonMark)
@@ -212,16 +208,25 @@ namespace ex45
 
     class RailwayStation
     {
+        List<Train> _trains = new List<Train>();
+
         public void CreateDirection(TicketOffice ticketOffice, Train train)
         {
             ticketOffice.CreateRoute();
-            train.CreateWagons(ticketOffice);
+            train.Create(ticketOffice);
+        }
+
+        public void AddTrains(Train train)
+        {
+            
         }
 
         public void ShowAllDirections(TicketOffice ticketOffice, Train train)
         {
             Console.Clear();
-            
+            ticketOffice.ShowAllDirections();
+            Console.SetCursorPosition(30, 0);
+            train.ShowTrain();
         }
     }
 }
